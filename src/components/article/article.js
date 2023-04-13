@@ -103,6 +103,7 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
+  
 
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
@@ -115,3 +116,65 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker (artObj){
+  //declaring elements
+  const article = document.createElement('div');
+  const artTitle = document.createElement('h2')
+  const artDate = document.createElement('p')
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const artSpan = document.createElement('span')
+  
+
+  // appending elements to main div
+  article.appendChild(artTitle);
+  article.appendChild(artDate);
+  article.appendChild(firstParagraph);
+  article.appendChild(secondParagraph);
+  article.appendChild(thirdParagraph);
+  article.appendChild(artSpan);
+
+  // adding clsses
+  article.className = 'article';
+  artDate.className = 'date';
+  artSpan.className = 'expandButton';
+
+  //event listener
+  artSpan.addEventListener('click', ()=>{
+    article.classList.toggle('article-open');
+  })
+
+  // adding content
+  artTitle.textContent = artObj.title;
+  artDate.textContent = artObj.date;
+  firstParagraph.textContent = artObj.firstParagraph;
+  secondParagraph.textContent = artObj.secondParagraph;
+  thirdParagraph.textContent = artObj.thirdParagraph;
+  artSpan.textContent = '+';
+
+
+  return article
+}
+
+const tester = {
+  title: "the",
+  date: "may 5th 2020",
+  firstParagraph: "i cant think of anything",
+  secondParagraph: "i stll cant think of anything",
+  thirdParagraph: " im forgetting to put commas to separate the items"
+
+}
+
+const artDiv = document.querySelector('.articles');
+
+artDiv.appendChild(articleMaker(tester));
+
+const articleElems = data.map( index => {
+  return articleMaker(index);
+})
+articleElems.forEach(index => {
+  artDiv.appendChild(index);
+})
+console.log(articleMaker(tester));
