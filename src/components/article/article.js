@@ -169,7 +169,7 @@ const tester = {
 
 const artDiv = document.querySelector('.articles');
 
-artDiv.appendChild(articleMaker(tester));
+// artDiv.appendChild(articleMaker(tester));
 
 const articleElems = data.map( index => {
   return articleMaker(index);
@@ -177,4 +177,3 @@ const articleElems = data.map( index => {
 articleElems.forEach(index => {
   artDiv.appendChild(index);
 })
-console.log(articleMaker(tester));
